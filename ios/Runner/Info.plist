@@ -78,7 +78,6 @@
         <string>fbapi</string>
         <string>fb-messenger-share-api</string>
     </array>
-
     <key>CFBundleURLTypes</key>
     <array>
         <dict>
@@ -89,7 +88,16 @@
                 <string>com.googleusercontent.apps.369087171178-alsh5866r89em2e9i5prlqo7a4q8r8ov</string>
             </array>
         </dict>
+        <dict>
+            <key>CFBundleTypeRole</key>
+            <string>Editor</string>
+            <key>CFBundleURLName</key>
+            <string>com.linhndq.alpha</string>
+            <key>CFBundleURLSchemes</key>
+            <array>
+                <string>fb875946810771217</string>
+            </array>
+        </dict>
     </array>
-
 </dict>
 </plist>
