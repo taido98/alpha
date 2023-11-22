@@ -26,6 +26,7 @@ class _SignInDemoState extends State<SignInDemo> {
   String _userName = "";
   String _email = "";
   String _image = "";
+  String _uuid = "";
 
   @override
   Widget build(BuildContext context) {
@@ -50,11 +51,16 @@ class _SignInDemoState extends State<SignInDemo> {
                       await _signInWithAppleServer();
                     } else {
                       final user = await signInWithApple();
+                      user.user?.email;
+                      dev.log(user.user.toString() ?? '',
+                          name: '_SignInDemoState.build');
                       setState(() {
-                        _social = "Google";
-                        _userName = user.user?.displayName ?? "";
-                        _email = user.user?.email ?? "";
-                        _image = user.user?.photoURL ?? "";
+                        _social = "Apple";
+                        _userName =
+                            user.user?.providerData.first.displayName ?? "";
+                        _uuid = user.user?.providerData.first.uid ?? "";
+                        _email = user.user?.providerData.first.email ?? "";
+                        _image = user.user?.providerData.first.photoURL ?? "";
                       });
                     }
                   },
@@ -161,6 +167,9 @@ class _SignInDemoState extends State<SignInDemo> {
                 ),
                 const SizedBox(height: 16),
                 if (token.isNotEmpty) _infoWidget(),
+                const SizedBox(
+                  height: 100,
+                )
               ],
             ),
           ),
@@ -196,19 +205,43 @@ class _SignInDemoState extends State<SignInDemo> {
           ],
         ),
         const SizedBox(height: 10),
-        Row(
-          children: [
-            const Text(
-              'Name: ',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+        if (_uuid.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'UUID: ',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Flexible(
+                    child: Text(
+                  _uuid,
+                ))
+              ],
             ),
-            Text(_userName),
-          ],
-        ),
-        const SizedBox(height: 10),
+          ),
+        if (_userName.isNotEmpty)
+          Padding(
+            padding: const EdgeInsets.only(bottom: 10),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Text(
+                  'Name: ',
+                  style: TextStyle(
+                    fontSize: 16,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+                Text(_userName),
+              ],
+            ),
+          ),
         Row(
           children: [
             Text(
@@ -218,7 +251,7 @@ class _SignInDemoState extends State<SignInDemo> {
                 fontWeight: FontWeight.w600,
               ),
             ),
-            Text(_email),
+            Flexible(child: Text(_email)),
           ],
         ),
         const SizedBox(height: 10),
@@ -250,6 +283,7 @@ class _SignInDemoState extends State<SignInDemo> {
       _email = "";
       _image = "";
       token = "";
+      _uuid = "";
     });
   }
 
