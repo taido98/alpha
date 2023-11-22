@@ -44,6 +44,8 @@ dependencies:
   flutter_facebook_auth: ^6.0.3
   http: ^1.1.0
   flutter_line_sdk: ^2.3.6
+  crypto: ^3.0.3
+  flutter_social_button: ^1.1.4+1
 
 dev_dependencies:
   flutter_test:
