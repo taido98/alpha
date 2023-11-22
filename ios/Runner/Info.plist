@@ -58,5 +58,25 @@
       <string>sms</string>
       <string>tel</string>
     </array>
+    <key>CFBundleURLTypes</key>
+    <array>
+        <dict>
+        <key>CFBundleURLSchemes</key>
+        <array>
+            <string>fb875946810771217</string>
+        </array>
+        </dict>
+    </array>
+    <key>FacebookAppID</key>
+    <string>875946810771217</string>
+    <key>FacebookClientToken</key>
+    <string>ae051547b5a328d8ab8c97a8dac06204</string>
+    <key>FacebookDisplayName</key>
+    <string>AlPha</string>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+        <string>fbapi</string>
+        <string>fb-messenger-share-api</string>
+    </array>
 </dict>
 </plist>
