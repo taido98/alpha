@@ -4,6 +4,7 @@ import 'package:alpha/firebase_options.dart';
 import 'package:alpha/sign_in_demo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_line_sdk/flutter_line_sdk.dart';
 
 void main() async {
   await runZonedGuarded(
@@ -14,6 +15,9 @@ void main() async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
       // or here
+      LineSDK.instance.setup('2001808412').then((_) {
+        print('LineSDK Prepared');
+      });
       runApp(const MyApp());
     },
     (e, st) => print('ERROR'),
@@ -32,7 +36,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-
   @override
   Widget build(BuildContext context) {
     return MaterialApp(

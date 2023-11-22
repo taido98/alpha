@@ -3,6 +3,7 @@ import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_facebook_auth/flutter_facebook_auth.dart';
+import 'package:flutter_line_sdk/flutter_line_sdk.dart' as line;
 import 'package:google_sign_in/google_sign_in.dart';
 import 'package:jwt_decoder/jwt_decoder.dart';
 import 'package:sign_in_with_apple/sign_in_with_apple.dart';
@@ -118,7 +119,28 @@ class _SignInDemoState extends State<SignInDemo> {
                 ),
                 const SizedBox(height: 16),
                 InkWell(
-                  onTap: () {
+                  onTap: () async {
+                    final result = await line.LineSDK.instance
+                        .login(scopes: ["profile", "openid", "email"]);
+                    // user email, if user set it in LINE and granted your request.
+                    setState(() {
+                      _social = "Line";
+                      token = result.accessToken.data.toString() ?? '';
+                      _userName = result.userProfile?.displayName ?? '';
+                      _email = result.accessToken.email ?? '';
+                      _image = result.userProfile?.pictureUrl ?? "";
+                    });
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.all(16),
+                    color: Colors.grey,
+                    child: const Text('Facebook',
+                        style: TextStyle(color: Colors.black)),
+                  ),
+                ),
+                const SizedBox(height: 16),
+                InkWell(
+                  onTap: () async {
                     log('sign out');
                     GoogleSignIn().signOut();
                     _clear();
