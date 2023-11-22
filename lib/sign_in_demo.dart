@@ -98,7 +98,6 @@ class _SignInDemoState extends State<SignInDemo> {
                 const SizedBox(height: 16),
                 InkWell(
                   onTap: () async {
-                    log('DODODOODODO ding in fbfbfbfbf');
                     final user = await signInWithFacebook();
                     if (user != null) {
                       log('DODODOODODO sign in fb ${user.user?.toString()}');
@@ -214,13 +213,13 @@ class _SignInDemoState extends State<SignInDemo> {
       _userName = "";
       _email = "";
       _image = "";
+      token = "";
     });
   }
 
   Future<UserCredential> signInWithGoogle() async {
     // Trigger the authentication flow
     final GoogleSignInAccount? googleUser = await GoogleSignIn().signIn();
-    log('DODODOODODO ${googleUser.toString()}');
 
     // Obtain the auth details from the request
     final GoogleSignInAuthentication? googleAuth =
@@ -238,50 +237,28 @@ class _SignInDemoState extends State<SignInDemo> {
     return await FirebaseAuth.instance.signInWithCredential(credential);
   }
 
-  // Future<UserCredential> signInWithFacebook() async {
-  //   // Trigger the sign-in flow
-  //   final LoginResult loginResult = await FacebookAuth.instance.login();
-  //   log('DODODOODODO result fb ${loginResult.accessToken?.toJson()}');
-  //
-  //   setState(() {
-  //     token = loginResult.accessToken?.token ?? '';
-  //   });
-  //
-  //   // Create a credential from the access token
-  //   final OAuthCredential facebookAuthCredential =
-  //       FacebookAuthProvider.credential(loginResult.accessToken?.token ?? '');
-  //
-  //   // Once signed in, return the UserCredential
-  //   return FirebaseAuth.instance.signInWithCredential(facebookAuthCredential);
-  // }
-
   Future<UserCredential?> signInWithFacebook() async {
-    final LoginResult loginResult = await FacebookAuth.instance.login(
-      permissions: const ["public_profile", "email"],
-    );
-
-    if (loginResult.status == LoginStatus.success) {
-      log('DODODOODODO fb 1');
-      final AccessToken accessToken = loginResult.accessToken!;
+    final LoginResult result = await FacebookAuth.instance
+        .login(permissions: ['public_profile', 'email']);
+    if (result.status == LoginStatus.success) {
+      // Create a credential from the access token
       final OAuthCredential credential =
-          FacebookAuthProvider.credential(accessToken.token);
+          FacebookAuthProvider.credential(result.accessToken!.token);
+      // Once signed in, return the UserCredential
+      setState(() {
+        token = result.accessToken!.token;
+      });
       try {
-        log('DODODOODODO fb 2 ${credential.accessToken}');
         return await FirebaseAuth.instance.signInWithCredential(credential);
       } on FirebaseAuthException catch (e) {
-        log('DODODOODODO fb 3 $e');
         // manage Firebase authentication exceptions
         return null;
       } catch (e) {
-        log('DODODOODODO fb 4 $e');
         // manage other exceptions
         return null;
       }
-    } else {
-      log('DODODOODODO fb 5 e');
-      // login was not successful, for example user cancelled the process
-      return null;
     }
+    return null;
   }
 
   void _setText(String data) {
