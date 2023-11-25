@@ -46,6 +46,8 @@ dependencies:
   flutter_line_sdk: ^2.3.6
   crypto: ^3.0.3
   flutter_social_button: ^1.1.4+1
+  permission_handler: ^10.2.0
+  health: ^8.1.0
 
 dev_dependencies:
   flutter_test:

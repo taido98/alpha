@@ -1,6 +1,7 @@
 import 'dart:async';
 
 import 'package:alpha/firebase_options.dart';
+import 'package:alpha/heath_demo/health_page.dart';
 import 'package:alpha/sign_in_demo.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
@@ -47,7 +48,7 @@ class _MyAppState extends State<MyApp> {
 
         return null;
       }),
-      home: const SignInDemo(),
+      home: const HealthApp(),
     );
   }
 }
