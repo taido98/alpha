@@ -23,9 +23,15 @@ jobs:
       - run: flutter clean
       - run: flutter pub get
 
-      - name: Build for Production
-        if: github.ref == 'refs/heads/distribution-testflight'
-        run: flutter build ios --config-only -t ./lib/main.dart --release
+      - run: flutter build ios --config-only -t ./lib/main.dart
+      - uses: yukiarrr/ios-build-action@v1.11.1
+        with:
+          project-path: Runner.xcodeproj
+          p12-base64: ${{ secrets.P12_BASE64 }}
+          mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
+          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
+          team-id: ${{ secrets.TEAM_ID }}
+          workspace-path: Runner.xcworkspace
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
