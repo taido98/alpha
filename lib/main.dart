@@ -40,7 +40,6 @@ class _MyAppState extends State<MyApp> {
   Widget build(BuildContext context) {
     return MaterialApp(
       onGenerateRoute: ((settings) {
-        // This is also invoked for incoming deep links
 
         // ignore: avoid_print
         print('onGenerateRoute: $settings');
