@@ -11,7 +11,7 @@ jobs:
 
   Flutter-Ios-Deployment:
     runs-on: macos-latest
-    if: github.ref == 'refs/distribution-testflight/main'
+    if: github.ref == 'refs/heads/main' || github.ref == 'refs/heads/distribution-testflight'
 
     steps:
       - uses: actions/checkout@v2
