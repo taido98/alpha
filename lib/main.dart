@@ -10,7 +10,7 @@ void main() async {
   await runZonedGuarded(
     () async {
       WidgetsFlutterBinding.ensureInitialized();
-      // Initialize other stuff here...
+      // Initialize other stuff here.... .
       await Firebase.initializeApp(
         options: DefaultFirebaseOptions.currentPlatform,
       );
