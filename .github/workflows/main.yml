@@ -29,7 +29,7 @@ jobs:
           project-path: ios/Runner.xcodeproj
           p12-base64: ${{ secrets.P12_BASE64 }}
           mobileprovision-base64: ${{ secrets.MOBILEPROVISION_BASE64 }}
-          code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
+          code-signing-identity: '0E9B73C9FB4E162B66EBCB40D3B6DEA488749130'
           team-id: ${{ secrets.TEAM_ID }}
           workspace-path: ios/Runner.xcworkspace
 
