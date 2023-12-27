@@ -32,11 +32,12 @@ jobs:
           code-signing-identity: ${{ secrets.CODE_SIGNING_IDENTITY }}
           team-id: ${{ secrets.TEAM_ID }}
           workspace-path: ios/Runner.xcworkspace
+          output-path: ios/app-release.ipa
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
         with:
-          app-path: 'path/to/application.ipa'
+          app-path: 'ios/app-release.ipa'
           issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
