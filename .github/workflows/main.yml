@@ -37,7 +37,7 @@ jobs:
           bundle-identifier: com.linhndq.alpha
           app-store-connect-api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           app-store-connect-api-key-issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
-          app-store-connect-api-key-base64: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
+          app-store-connect-api-key-base64: 'LS0tLS1CRUdJTiBQUklWQVRFIEtFWS0tLS0tCk1JR1RBZ0VBTUJNR0J5cUdTTTQ5QWdFR0NDcUdTTTQ5QXdFSEJIa3dkd0lCQVFRZzZIM0w4clpZNlc0TUpibG8KYmlsNFpwQklMMFNvNEJCaVBmYmNucjRmTE9TZ0NnWUlLb1pJemowREFRZWhSQU5DQUFTeDlqRlBXWnVDRDVNcgpWcjVkdFVjY1JLYVlUVDFPVXlvbUQ3OGU3ZkJhZU9zN0NSRHhLd3ExNE5CRUltY3RPc0FYZDVoL3JRNHcwUmZLCjJvTFdrcGJoCi0tLS0tRU5EIFBSSVZBVEUgS0VZLS0tLS0='
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
