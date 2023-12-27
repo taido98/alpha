@@ -24,6 +24,7 @@ void main() async {
     zoneSpecification: ZoneSpecification(
         print: (Zone self, ZoneDelegate parent, Zone zone, String line) {
       //save to a file or do whatever you want
+
     }),
   );
 }
