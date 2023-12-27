@@ -35,6 +35,9 @@ jobs:
           output-path: ios/app-release.ipa
           increment-build-number: testflight
           bundle-identifier: com.linhndq.alpha
+          app-store-connect-api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
+          app-store-connect-api-key-issuer-id: ${{ secrets.APPSTORE_ISSUER_ID }}
+          app-store-connect-api-key-base64: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
 
       - name: 'Upload app to TestFlight'
         uses: apple-actions/upload-testflight-build@v1
