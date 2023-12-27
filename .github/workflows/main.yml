@@ -42,3 +42,4 @@ jobs:
           api-key-id: ${{ secrets.APPSTORE_API_KEY_ID }}
           api-private-key: ${{ secrets.APPSTORE_API_PRIVATE_KEY }}
           increment-build-number: testflight
+          bundle-identifier: com.linhndq.alpha
