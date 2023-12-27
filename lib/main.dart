@@ -15,6 +15,7 @@ void main() async {
         options: DefaultFirebaseOptions.currentPlatform,
       );
       // or here
+
       LineSDK.instance.setup('2001808412').then((_) {
         print('LineSDK Prepared');
       });
