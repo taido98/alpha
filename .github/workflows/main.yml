@@ -23,6 +23,7 @@ jobs:
       - run: flutter clean
       - run: flutter pub get
 
+
       - run: flutter build ios --config-only -t ./lib/main.dart
       - uses: yukiarrr/ios-build-action@v1.11.1
         with:
